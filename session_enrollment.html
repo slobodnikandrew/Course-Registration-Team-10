@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Session Enrollment</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* General styles for body */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        
+        /* Container styling */
+        .container {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Session Enrollment</h1>
+        
+        <!-- Authentication Form -->
+        <section>
+            <h2>Instructor Login</h2>
+            <form id="instructor-login-form" onsubmit="return validateInstructorLogin()">
+                <label for="instructor-id">Instructor ID:</label>
+                <input type="text" id="instructor-id" name="instructor-id" required placeholder="Enter your Instructor ID">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" required placeholder="Enter your Password">
+
+                <button type="submit">Login</button>
+            </form>
+        </section>
+
+        <div id="enrollment-section" style="display: none;">
+            <h2>Select a Course to View Enrolled Students</h2>
+            <label for="course-select">Choose a Course:</label>
+            <select id="course-select" onchange="showStudents()">
+                <option value="">--Select a Course--</option>
+                <option value="course1">Intro to Programming</option>
+                <option value="course2">Data Structures</option>
+                <option value="course3">Advanced Security</option>
+                <option value="course4">Database Management</option>
+                <option value="course5">Web Development</option>
+            </select>
+            <section id="students-list" style="display: none;">
+                <h2>Enrolled Students</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Student ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="students-table-body">
+                        <!-- Dynamic student list will be populated here -->
+                    </tbody>
+                </table>
+            </section>
+        </div>
+    </div>
+    <script>
+        function validateInstructorLogin() {
+            const instructorId = document.getElementById("instructor-id").value;
+            const password = document.getElementById("password").value;
+            
+            if (instructorId === "admin" && password === "password") { // Example credentials
+                document.getElementById("instructor-login-form").style.display = "none";
+                document.getElementById("enrollment-section").style.display = "block";
+                return false;
+            } else {
+                alert("Invalid login credentials");
+                return false;
+            }
+        }
+
+        // Function to display students for selected course
+        function showStudents() {
+            const studentData = {
+                "course1": [
+                    { name: "John Doe", id: "S101" },
+                    { name: "Jane Smith", id: "S102" },
+                    { name: "Mark Taylor", id: "S103" },
+                    { name: "Lucy Adams", id: "S104" },
+                    { name: "Tom Harris", id: "S105" }
+                ],
+                "course2": [
+                    { name: "Alice Johnson", id: "S201" },
+                    { name: "Bob Brown", id: "S202" },
+                    { name: "Charlie Evans", id: "S203" },
+                    { name: "Diana Lee", id: "S204" },
+                    { name: "Edward King", id: "S205" }
+                ],
+                "course3": [
+                    { name: "Franklin Moore", id: "S301" },
+                    { name: "Grace Allen", id: "S302" },
+                    { name: "Henry Scott", id: "S303" },
+                    { name: "Isabel Turner", id: "S304" },
+                    { name: "Jack White", id: "S305" }
+                ],
+                "course4": [
+                    { name: "Kevin Mitchell", id: "S401" },
+                    { name: "Laura Foster", id: "S402" },
+                    { name: "Michael Carter", id: "S403" },
+                    { name: "Nancy Bell", id: "S404" },
+                    { name: "Oliver Perez", id: "S405" }
+                ],
+                "course5": [
+                    { name: "Peter Adams", id: "S501" },
+                    { name: "Quinn Roberts", id: "S502" },
+                    { name: "Rachel Sanders", id: "S503" },
+                    { name: "Samuel Bennett", id: "S504" },
+                    { name: "Tina Cooper", id: "S505" }
+                ]
+            };
+            
+            const courseSelect = document.getElementById("course-select");
+            const selectedCourse = courseSelect.value;
+            const studentsTableBody = document.getElementById("students-table-body");
+            const studentsListSection = document.getElementById("students-list");
+            
+            studentsTableBody.innerHTML = "";
+            
+            if (selectedCourse && studentData[selectedCourse]) {
+                studentData[selectedCourse].forEach(student => {
+                    const row = `<tr><td>${student.name}</td><td>${student.id}</td></tr>`;
+                    studentsTableBody.innerHTML += row;
+                });
+                studentsListSection.style.display = "block";
+            } else {
+                studentsListSection.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
