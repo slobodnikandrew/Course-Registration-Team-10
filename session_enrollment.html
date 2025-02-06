@@ -7,14 +7,14 @@
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <style>
-        /* General styles for body */
+        /* general styles for body */
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             margin: 50px;
         }
         
-        /* Container styling */
+        /* container styling */
         .container {
             max-width: 600px;
             margin: auto;
@@ -24,7 +24,7 @@
             box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
         
-        /* Table styling */
+        /* table styling */
         table {
             width: 100%;
             border-collapse: collapse;
@@ -45,7 +45,7 @@
     <div class="container">
         <h1>Session Enrollment</h1>
         
-        <!-- Authentication Form -->
+        <!-- authentication form -->
         <section>
             <h2>Instructor Login</h2>
             <form id="instructor-login-form" onsubmit="return validateInstructorLogin()">
@@ -80,7 +80,7 @@
                         </tr>
                     </thead>
                     <tbody id="students-table-body">
-                        <!-- Dynamic student list will be populated here -->
+                        <!-- student list will be populated here -->
                     </tbody>
                 </table>
             </section>
@@ -101,7 +101,7 @@
             }
         }
 
-        // Function to display students for selected course
+        // displaying students for selected course
         function showStudents() {
             const studentData = {
                 "course1": [
