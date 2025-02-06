@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Search</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+        .container {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .course-details {
+            margin-top: 20px;
+            border-top: 2px solid #ddd;
+            padding-top: 20px;
+        }
+        .course-item {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Course Search</h1>
+    <div class="form-group">
+        <label for="search-by">Search By:</label>
+        <select id="search-by">
+            <option value="department">Department</option>
+            <option value="instructor">Instructor</option>
+            <option value="course-number">Course Number</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="search-input">Enter Search Term:</label>
+        <input type="text" id="search-input" placeholder="Enter your search term">
+    </div>
+    <button onclick="searchCourses()">Search</button>
+    
+    <div class="course-details" id="course-details">
+        <!-- Course details will appear here -->
+    </div>
+</div>
+
+<script>
+    const courses = [
+        { department: "CS", courseNumber: "101", instructor: "Dr. Smith", creditHours: 3, prerequisites: "None", modality: "In-person", maxEnrollment: 30 },
+        { department: "MATH", courseNumber: "201", instructor: "Dr. Johnson", creditHours: 4, prerequisites: "CS 101", modality: "Online", maxEnrollment: 25 },
+        { department: "BIO", courseNumber: "101", instructor: "Dr. Lee", creditHours: 3, prerequisites: "None", modality: "In-person", maxEnrollment: 40 },
+        { department: "CS", courseNumber: "305", instructor: "Dr. Brown", creditHours: 3, prerequisites: "MATH 201", modality: "Hybrid", maxEnrollment: 20 },
+    ];
+
+    function searchCourses() {
+        const searchBy = document.getElementById("search-by").value;
+        const searchInput = document.getElementById("search-input").value.toLowerCase();
+        const filteredCourses = courses.filter(course => {
+            return course[searchBy].toLowerCase().includes(searchInput);
+        });
+
+        displayCourses(filteredCourses);
+    }
+
+    function displayCourses(courses) {
+        const courseDetails = document.getElementById("course-details");
+        courseDetails.innerHTML = '';
+
+        if (courses.length === 0) {
+            courseDetails.innerHTML = '<p>No courses found.</p>';
+            return;
+        }
+
+        courses.forEach(course => {
+            const courseItem = document.createElement("div");
+            courseItem.classList.add("course-item");
+            courseItem.innerHTML = `
+                <h3>${course.department} ${course.courseNumber} - ${course.instructor}</h3>
+                <p><strong>Credit Hours:</strong> ${course.creditHours}</p>
+                <p><strong>Prerequisites:</strong> ${course.prerequisites}</p>
+                <p><strong>Modality:</strong> ${course.modality}</p>
+                <p><strong>Maximum Enrollment:</strong> ${course.maxEnrollment}</p>
+            `;
+            courseDetails.appendChild(courseItem);
+        });
+    }
+</script>
+
+</body>
+</html>
