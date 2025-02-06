@@ -75,3 +75,59 @@ button:hover {
 input[type="text"]:invalid, input[type="email"]:invalid {
     border-color: red;
 }
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #333;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Login Form Styles */
+#instructor-login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#instructor-login-form label {
+    margin: 10px 0 5px;
+    font-size: 1.1em;
+}
+
+#instructor-login-form input[type="text"],
+#instructor-login-form input[type="password"] {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+}
+
+#instructor-login-form button {
+    background-color: #d0e623;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+
+#instructor-login-form button:hover {
+    background-color: #45a049;
+}
