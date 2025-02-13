@@ -8,7 +8,7 @@ For UI/UX Design:
 
 - Mohamed Salman created the student registration page and the instructor schedule page.
 
-For Architecture Build:
+For Architecture Build (added to github):
 - Mohamed Elnafe worked on application design.
 
 - Mohamed Salman worked on Cloud Architect
